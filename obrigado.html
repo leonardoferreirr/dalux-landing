@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Abrindo o WhatsApp · Dalux Dedetização</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-600.woff2') format('woff2');font-weight:600;font-display:swap}
+*{margin:0;box-sizing:border-box}
+body{font-family:'Poppins',Arial,sans-serif;background:#000;color:#fff;min-height:100svh;display:grid;place-items:center;text-align:center;padding:2rem}
+.caixa{max-width:30rem}
+.logo{width:180px;margin:0 auto 1.6rem}
+h1{font-weight:600;font-size:1.8rem;line-height:1.2;letter-spacing:-.02em}
+h1 span{color:#FFC400}
+p{margin-top:.8rem;color:#CFCFCF;font-size:.98rem;line-height:1.65}
+p a{color:#FFC400}
+.giro{width:32px;height:32px;margin:1.8rem auto 0;border:3px solid #2A2A2A;border-top-color:#FFC400;border-radius:50%;animation:g 1s linear infinite}
+@keyframes g{to{transform:rotate(360deg)}}
+.manual{margin-top:1.6rem;display:none}
+.manual a{display:inline-flex;align-items:center;min-height:52px;padding:.8rem 1.7rem;border-radius:999px;background:#13853F;color:#fff;text-decoration:none;font-weight:600}
+.voltar{display:block;margin-top:1.1rem;font-size:.88rem;color:#A3A3A3}
+@media (prefers-reduced-motion:reduce){.giro{animation:none}}
+</style>
+</head>
+<body>
+<div class="caixa">
+  <img class="logo" src="assets/img/logo-dalux-360.webp" width="360" height="222" alt="Dalux Dedetização">
+  <h1>Abrindo o seu <span>WhatsApp</span></h1>
+  <p id="msg">Um instante, estamos levando você para a conversa com a Dalux.</p>
+  <div class="giro" id="giro"></div>
+  <div class="manual" id="manual"><a id="ir" href="https://wa.me/5567993106147">Abrir a conversa</a></div>
+  <a class="voltar" href="./">Voltar ao site</a>
+</div>
+<script>
+(function(){
+  var NUM = '5567993106147';
+  var TXT = 'Olá! Vim pelo site da Dalux e quero um orçamento de dedetização.';
+  var c = new URLSearchParams(location.search).get('c') || 'desconhecido';
+  var alvo = 'https://wa.me/' + NUM + '?text=' + encodeURIComponent(TXT);
+  var manual = document.getElementById('manual'), giro = document.getElementById('giro');
+  document.getElementById('ir').href = alvo;
+
+  // Ponte de conversão: o evento sai daqui, com URL própria, antes de abrir o WhatsApp.
+  // Com GTM instalado, espera o eventCallback (tags disparadas) e no mínimo 0,9s de tela,
+  // com teto de 2,6s para GTM bloqueado. Sem GTM, segue com 0,9s.
+  var temGTM = !!document.querySelector('script[src*="googletagmanager.com/gtm.js"]');
+  var partiu = false, tagOk = !temGTM, minimo = false;
+  function vai(){ if (partiu) return; partiu = true; location.replace(alvo); }
+  function tenta(){ if (tagOk && minimo) vai(); }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'whatsapp_click', contexto: c,
+    eventCallback: function(){ tagOk = true; tenta(); }, eventTimeout: 2000 });
+
+  setTimeout(function(){ minimo = true; tenta(); }, 900);
+  setTimeout(vai, 2600);
+  setTimeout(function(){ giro.style.display = 'none'; manual.style.display = 'block'; }, 3200);
+})();
+</script>
+</body>
+</html>

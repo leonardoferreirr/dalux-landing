@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "dalux", "runtimeExecutable": "npx", "runtimeArgs": ["--yes", "serve", "-l", "8890", "."], "port": 8890 }
+  ]
+}
