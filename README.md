@@ -1,6 +1,6 @@
-# Dalux Dedetização · landing
+# Dedetização Raio X (ex-Dalux) · landing
 
-Site da Dalux Dedetização (escorpião e barata, DDD 67, Mato Grosso do Sul). Primeiro cliente da oferta
+Site da **Dedetização Raio X** (era Dalux Dedetização até 29/10/2026), escorpião e barata em **Campo Grande, MS**. Identidade preta, branca e vermelha (`--vermelho #E5121B`, `--vermelho-claro #FF3B3B` para texto pequeno no preto, `--vermelho-escuro #D0101A` com número branco). O repositório continua `dalux-landing`. Primeiro cliente da oferta
 "site grátis + R$50/mês de hospedagem".
 
 Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework: null`.
@@ -19,9 +19,9 @@ Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework:
 
 ## Imagens (v2, "na mira")
 
-- `logo-dalux-t-*.webp`: logo do cliente sem a linha "contra escorpião e baratas", sem os dois ícones de proibido e
-  com fundo transparente (fundo, miolo da casa e das letras). O preto do bonequinho fica: a silhueta dele é achada
-  fechando o contorno branco e preenchendo por dentro. Fonte em `_src/logo-transparente.png`.
+- `logo-raiox-*.webp`: logo da Raio X sem a fileira de ícones, sem "CAMPO GRANDE MS", sem o pino e com fundo transparente.
+  O corpo do escorpião é preto brilhante igual ao fundo: perto dos bichos só sai o preto chapado (o corpo tem textura),
+  no resto o preto vira transparência com rampa. Fonte em `_src/raiox/logo-raiox-transparente.png`. O logo antigo da Dalux está em `_src/`.
 - `esc-topo-*.webp` e `esc-lado-*.webp`: escorpião-amarelo (Tityus serrulatus) de Alexandre S. Michelotto,
   Wikimedia Commons, **CC BY-SA 4.0**. Por pedido do Leonardo o crédito saiu do rodapé e ficou no `title` das três
   imagens do escorpião (texto que aparece ao passar o mouse): não apagar esses `title`.
@@ -36,7 +36,7 @@ Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework:
 
 ## A confirmar com o cliente
 
-- Cidade e bairros atendidos (título, descrição e dados do Google ainda dizem só "Mato Grosso do Sul").
+- Bairros atendidos (a cidade já está: Campo Grande, MS, no título, descrição, schema, abertura e rodapé).
 - Garantia (tem? quantos dias?) e se emite certificado de dedetização para empresa.
 - **Francesinha:** a ficha diz que a Dalux aplica o produto em gel dentro das frestas. Confirmar que é o método dele
   (é o padrão para essa barata). Se não for, trocar o parágrafo `.ficha-dalux` no `index.html`.
