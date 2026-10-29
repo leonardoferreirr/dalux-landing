@@ -72,9 +72,6 @@ ul,ol{padding:0;list-style:none}
 .hero h1 span{display:block;color:var(--amarelo)}
 .hero .sub{margin-top:1.2rem;color:#CFCFCF;font-size:clamp(1rem,.96rem + .3vw,1.15rem);max-width:33rem;animation:sobe .8s var(--ease) .15s both}
 .acoes{margin-top:1.9rem;display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem;animation:sobe .8s var(--ease) .28s both}
-.tel-link{display:inline-flex;align-items:center;gap:.5rem;color:#EDEDED;text-decoration:none;font-weight:500;transition:color .25s}
-.tel-link svg{width:20px;height:20px;color:var(--amarelo)}
-.tel-link:hover{color:var(--amarelo)}
 .selos{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.9rem 1.6rem}
 .selos li{display:flex;align-items:center;gap:.65rem;font-size:.93rem;color:#E2E2E2;animation:sobe .7s var(--ease) both}
 .selos li:nth-child(1){animation-delay:.42s}.selos li:nth-child(2){animation-delay:.5s}.selos li:nth-child(3){animation-delay:.58s}
@@ -229,8 +226,6 @@ ul,ol{padding:0;list-style:none}
 .final-grid{display:grid;gap:2rem;align-items:center;text-align:center}
 .final-txt p{margin:1rem auto 0;max-width:32rem;font-size:clamp(1rem,.96rem + .3vw,1.15rem)}
 .final-txt .zap{margin-top:1.8rem}
-.final .tel{display:block;margin-top:1rem;font-weight:500;text-decoration:none}
-.final .tel:hover{text-decoration:underline}
 .final-alvo{position:relative;width:min(78vw,400px);aspect-ratio:1;margin-inline:auto}
 .final-alvo img{position:absolute;left:3%;top:27%;width:94%;filter:drop-shadow(0 22px 22px rgba(0,0,0,.35))}
 .final-alvo svg{position:absolute;inset:0;width:100%;height:100%}
