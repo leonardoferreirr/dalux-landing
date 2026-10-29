@@ -83,34 +83,44 @@ ul,ol{padding:0;list-style:none}
 
 /* a mira travando no escorpião */
 .alvo{position:relative;width:min(100%,560px);aspect-ratio:1;margin-inline:auto;--mx:0;--my:0}
-.esc-w{position:absolute;left:12%;top:14%;width:76%;transform:rotate(-16deg);translate:calc(var(--mx) * -16px) calc(var(--my) * -12px);transition:translate .7s var(--ease)}
+.cena{position:absolute;inset:0;translate:calc(var(--mx) * -16px) calc(var(--my) * -12px);transition:translate .7s var(--ease)}
+.slide{position:absolute;inset:0}
+/* o slideshow só começa no primeiro sinal de gente (site.js põe .roda): se a barata entrasse
+   sozinha durante o carregamento, o Google contaria ela como a imagem principal e a nota cairia */
+.slide--bar{opacity:0}
+.roda .slide--esc{animation:cicloEsc 8s cubic-bezier(.65,0,.35,1) 1.2s infinite}
+.roda .slide--bar{animation:cicloBar 8s cubic-bezier(.65,0,.35,1) 1.2s infinite}
+.esc-w{position:absolute;left:12%;top:14%;width:76%;transform:rotate(-16deg)}
 .esc{width:100%;filter:drop-shadow(0 26px 28px rgba(0,0,0,.75));animation:entraEsc 1.3s var(--ease) both}
-.bar-w{position:absolute;left:2%;bottom:4%;width:19%;transform:rotate(36deg);translate:calc(var(--mx) * 10px) calc(var(--my) * 8px);transition:translate .7s var(--ease)}
-.bar{width:100%;filter:drop-shadow(0 12px 12px rgba(0,0,0,.7));animation:entraBar 1.6s var(--ease) .45s both}
-.mira,.mira-p{position:absolute;overflow:visible;pointer-events:none}
+/* barata: área menor que a do escorpião, para não virar um novo LCP quando entra */
+.bar-w{position:absolute;left:25%;top:5%;width:50%;transform:rotate(16deg);transform-origin:50% 62%}
+.bar{width:100%;filter:drop-shadow(0 22px 24px rgba(0,0,0,.75))}
+.mira{position:absolute;overflow:visible;pointer-events:none}
 .mira{inset:0;width:100%;height:100%;translate:calc(var(--mx) * 6px) calc(var(--my) * 5px);transition:translate .5s var(--ease)}
-.mira *,.mira-p *{transform-box:view-box;transform-origin:50% 50%}
+.mira *{transform-box:view-box;transform-origin:50% 50%}
 .m-caca{animation:caca 1.7s cubic-bezier(.25,.8,.25,1) .2s both}
 .m-deriva{animation:deriva 6s ease-in-out 2.4s infinite alternate}
 .m-externo{animation:gira 60s linear infinite}
 .m-tracos{animation:gira 32s linear infinite reverse}
 .m-varredura{animation:gira 3.4s linear infinite}
 .m-cantos{animation:trava .55s cubic-bezier(.3,1.6,.5,1) 1.5s both}
+.roda .m-cantos{animation:trava .55s cubic-bezier(.3,1.6,.5,1) 1.5s both,retrava 4s cubic-bezier(.3,1.4,.5,1) 4.65s infinite}
 .m-anel{animation:flash .9s ease-out 1.7s both}
 .m-pulso{animation:pulsa 1.8s ease-out 2s infinite}
-.mira-p{left:-2%;bottom:3%;width:30%;height:auto;animation:trava .5s cubic-bezier(.3,1.6,.5,1) 2.1s both,pisca 2.6s ease-in-out 2.8s infinite}
 
 @keyframes sobeH1{from{transform:translateY(18px)}to{transform:none}}
 @keyframes sobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes entraEsc{from{transform:translate(9%,9%) scale(.86) rotate(12deg)}to{transform:none}}
-@keyframes entraBar{from{opacity:0;transform:translate(-70%,50%) rotate(-30deg)}to{opacity:1;transform:none}}
+/* slideshow atrás da mira: um sai pela esquerda enquanto o outro entra pela direita */
+@keyframes cicloEsc{0%,41%{opacity:1;transform:none;filter:none}50%{opacity:0;transform:translateX(-46%) rotate(-16deg) scale(.82);filter:blur(5px)}50.01%,91%{opacity:0;transform:translateX(46%) rotate(16deg) scale(.82);filter:blur(5px)}100%{opacity:1;transform:none;filter:none}}
+@keyframes cicloBar{0%,41%{opacity:0;transform:translateX(46%) rotate(16deg) scale(.82);filter:blur(5px)}50%,91%{opacity:1;transform:none;filter:none}100%{opacity:0;transform:translateX(-46%) rotate(-16deg) scale(.82);filter:blur(5px)}}
+@keyframes retrava{0%{transform:none}4%{transform:scale(1.28);opacity:.4}12%,100%{transform:none;opacity:1}}
 @keyframes caca{0%{opacity:0;transform:translate(-80px,70px) scale(1.3)}18%{opacity:1}55%{transform:translate(16px,-12px) scale(.97)}80%{transform:translate(-4px,3px)}100%{opacity:1;transform:none}}
 @keyframes deriva{to{transform:translate(5px,-4px)}}
 @keyframes gira{to{transform:rotate(360deg)}}
 @keyframes trava{from{opacity:0;transform:scale(1.5)}to{opacity:1;transform:none}}
 @keyframes flash{0%{stroke-width:3}30%{stroke-width:10;opacity:.6}100%{stroke-width:3;opacity:1}}
 @keyframes pulsa{from{transform:scale(1);opacity:1}to{transform:scale(3.4);opacity:0}}
-@keyframes pisca{0%,100%{opacity:1}50%{opacity:.45}}
 
 /* a curva (traço amarelo do logo) que costura as seções */
 .curva{display:block;width:100%;height:clamp(42px,6vw,86px);background:var(--para);margin-top:-1px}
@@ -292,7 +302,8 @@ ul,ol{padding:0;list-style:none}
   .cartao p{margin-inline:0}
   .so-desk{display:inline-flex}
   .so-mob{display:none}
-  .mapa{grid-template-columns:1.6fr 1fr;gap:2.2rem}
+  .mapa{grid-template-columns:1.6fr 1fr;gap:2.2rem;align-items:stretch}
+  .casa-svg{height:100%}
   .mapa-lista{grid-template-columns:1fr}
   .mapa-lista li:last-child{grid-column:auto}
   .final-grid{grid-template-columns:1.1fr .9fr;text-align:left}

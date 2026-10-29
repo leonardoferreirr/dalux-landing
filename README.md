@@ -19,13 +19,17 @@ Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework:
 
 ## Imagens (v2, "na mira")
 
-- `logo-dalux-*.webp`: logo do cliente sem a linha "contra escorpião e baratas" e sem os dois ícones de proibido
-  (recorte do JPG original em `_src/logo-original.jpg`, linhas 60 a 793).
+- `logo-dalux-t-*.webp`: logo do cliente sem a linha "contra escorpião e baratas", sem os dois ícones de proibido e
+  com fundo transparente (fundo, miolo da casa e das letras). O preto do bonequinho fica: a silhueta dele é achada
+  fechando o contorno branco e preenchendo por dentro. Fonte em `_src/logo-transparente.png`.
 - `esc-topo-*.webp` e `esc-lado-*.webp`: escorpião-amarelo (Tityus serrulatus) de Alexandre S. Michelotto,
-  Wikimedia Commons, **CC BY-SA 4.0**: o crédito no rodapé é obrigatório, não tirar.
+  Wikimedia Commons, **CC BY-SA 4.0**. Por pedido do Leonardo o crédito saiu do rodapé e ficou no `title` das três
+  imagens do escorpião (texto que aparece ao passar o mouse): não apagar esses `title`.
 - `barata-topo-*.webp`: Unsplash photo-1611773236409 (licença livre, sem crédito obrigatório).
 - Recorte com o Vision da Apple (`swift _src/lift.swift entrada saida.png`) e limpeza do papel branco que sobra
   entre as patas (pixels claros e sem cor viram transparentes). Originais e recortes em `_src/v2/`.
+- Hero: escorpião e barata se revezam atrás de uma mira só. O slideshow começa no primeiro movimento da pessoa
+  (ou aos 12 s): se a barata entrasse sozinha no carregamento, o Lighthouse a contava como LCP aos 7,6 s (desktop 75).
 - A mira, as fitas de "cuidado", a cadeia barata → escorpião → casa e o corte da casa são SVG/CSS no próprio HTML.
 
 ## A confirmar com o cliente

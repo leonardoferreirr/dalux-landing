@@ -70,7 +70,18 @@
     });
   }
 
-  // 5. Mapa da casa: item da lista acende o número no desenho e vice-versa
+  // 5. Slideshow escorpião/barata atrás da mira: começa no primeiro sinal de gente (ou aos 12 s)
+  if (alvo) {
+    var gatilhos = ['pointermove', 'pointerdown', 'scroll', 'wheel', 'touchstart', 'keydown'];
+    var roda = function () {
+      alvo.classList.add('roda');
+      gatilhos.forEach(function (g) { window.removeEventListener(g, roda); });
+    };
+    gatilhos.forEach(function (g) { window.addEventListener(g, roda, { passive: true }); });
+    setTimeout(roda, 12000);
+  }
+
+  // 6. Mapa da casa: item da lista acende o número no desenho e vice-versa
   var itens = document.querySelectorAll('.mapa-lista li');
   var pontos = document.querySelectorAll('.hs');
   function acende(n) {
