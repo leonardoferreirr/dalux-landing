@@ -1,0 +1,6 @@
+# Buscadores e assistentes de IA podem ler o site inteiro.
+# A página obrigado fica de fora do índice pelo noindex dela, não por aqui.
+User-agent: *
+Allow: /
+
+Sitemap: https://dalux-landing.vercel.app/sitemap.xml

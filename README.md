@@ -17,6 +17,18 @@ Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework:
   Todo botão aponta para `obrigado?c=<contexto>` (sem `.html`: a URL limpa da Vercel perderia a query),
   que dispara `whatsapp_click` no dataLayer antes de abrir a conversa. Pronto para o GTM, ainda não instalado.
 
+## SEO, AEO e GEO
+
+- `build.py` monta o schema (JSON-LD com LocalBusiness, serviços, HowTo e FAQPage) e gera `robots.txt`,
+  `sitemap.xml` e `llms.txt`. FAQ, passos e esconderijos são lidos do próprio `index.html`: editou a página,
+  rodou o build, o schema e o `llms.txt` acompanham. Dados fixos da empresa (nome, telefone, serviços) ficam
+  no topo do `build.py`.
+- **Domínio:** está só na constante `DOMINIO` do `build.py`. Ao conectar o domínio próprio na Vercel, troque ali e
+  rode o build: canonical, og, schema, sitemap, robots e `llms.txt` mudam juntos, e o `vercel.json` ganha um 301
+  do `dalux-landing.vercel.app` para o domínio novo (sem isso o Google pode indexar os dois endereços).
+- Depois do domínio: cadastrar no Google Search Console e no Bing Webmaster Tools, enviar o `sitemap.xml` e
+  pedir a indexação da home. O Perfil da Empresa no Google pesa mais que o site para "dedetização perto de mim".
+
 ## Imagens (v2, "na mira")
 
 - `logo-raiox-*.webp`: logo da Raio X sem a fileira de ícones, sem "CAMPO GRANDE MS", sem o pino e com fundo transparente.
@@ -39,7 +51,9 @@ Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework:
 - Bairros atendidos (a cidade já está: Campo Grande, MS, no título, descrição, schema, abertura e rodapé).
 - Garantia (tem? quantos dias?) e se emite certificado de dedetização para empresa.
 - **Francesinha:** a ficha diz que a Dalux aplica o produto em gel dentro das frestas. Confirmar que é o método dele
-  (é o padrão para essa barata). Se não for, trocar o parágrafo `.ficha-dalux` no `index.html`.
+  (é o padrão para essa barata). Se não for, trocar o parágrafo `.ficha-marca` no `index.html`, a pergunta
+  "Qual a diferença entre a barata de esgoto e a francesinha?" e o serviço da francesinha no `build.py`.
 - Anos de experiência, CNPJ, licença sanitária e responsável técnico.
 - Fotos reais da equipe e do serviço (hoje o site não tem foto de pessoa).
-- Domínio (canonical, og:image e schema apontam para `dalux-landing.vercel.app`).
+- Domínio (hoje tudo aponta para `dalux-landing.vercel.app`; trocar em `DOMINIO` no `build.py`).
+- Instagram ou outras redes, para entrar no `sameAs` do schema.

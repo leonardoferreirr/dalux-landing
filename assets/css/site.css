@@ -18,6 +18,7 @@
   --vermelho-escuro:#D0101A;
   --zap:#13853F;
   --zap-esc:#0F6E33;
+  --zap-claro:#2FD06B;
   --fonte:'Poppins','PoppinsFB',Arial,sans-serif;
   --wrap:1180px;
   --gut:clamp(1.25rem,5vw,2.5rem);
@@ -177,9 +178,9 @@ ul,ol{padding:0;list-style:none}
 .passos-topo{text-align:center}
 .pilha{display:grid;gap:1.25rem}
 .cartao{position:sticky;top:calc(var(--h-topo) + 18px + var(--i) * 16px);overflow:hidden;background:linear-gradient(180deg,#171717,#0D0D0D);border:1px solid #272727;border-radius:26px;padding:clamp(1.6rem,4vw,2.4rem);min-height:230px;text-align:center;box-shadow:0 -20px 40px -22px rgba(0,0,0,.9);transition:border-color .35s}
-.cartao:hover{border-color:rgba(229,18,27,.5)}
-.c-num{position:absolute;right:1.2rem;top:.4rem;font-weight:600;font-size:clamp(3.4rem,9vw,5.4rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(229,18,27,.5)}
-.c-ico{display:grid;place-items:center;width:56px;height:56px;margin-inline:auto;border-radius:16px;background:rgba(229,18,27,.1);border:1px solid rgba(229,18,27,.38);color:var(--vermelho-claro)}
+.cartao:hover{border-color:rgba(47,208,107,.5)}
+.c-num{position:absolute;right:1.2rem;top:.4rem;font-weight:600;font-size:clamp(3.4rem,9vw,5.4rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(47,208,107,.55)}
+.c-ico{display:grid;place-items:center;width:56px;height:56px;margin-inline:auto;border-radius:16px;background:rgba(47,208,107,.1);border:1px solid rgba(47,208,107,.38);color:var(--zap-claro)}
 .c-ico svg{width:26px;height:26px}
 .cartao h3{margin-top:1.2rem;font-weight:600;font-size:clamp(1.15rem,1.05rem + .5vw,1.4rem);line-height:1.3}
 .cartao p{margin:.55rem auto 0;color:#BDBDBD;max-width:30rem}
@@ -331,6 +332,11 @@ ul,ol{padding:0;list-style:none}
 }
 @media (min-width:1040px){
   .menu{display:flex;gap:2rem}
+}
+/* abertura das duas seções de esconderijo numa linha só: sai da coluna de
+   46rem e encolhe a letra só o necessário para caber até em 1200 px */
+@media (min-width:1200px){
+  .lead--linha{width:max-content;max-width:none;white-space:nowrap;position:relative;left:50%;transform:translateX(-50%);font-size:min(1.15rem,calc((100vw - 5rem)/70))}
 }
 
 @media (prefers-reduced-motion:reduce){
