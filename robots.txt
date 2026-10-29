@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dalux-landing.vercel.app/sitemap.xml
+Sitemap: https://www.dedetizacaoraiox.com.br/sitemap.xml

@@ -13,6 +13,8 @@ editar a página e rodar este script que os dois acompanham.
 O domínio oficial mora só em DOMINIO. Ao conectar o domínio próprio, troque ali
 e rode o build: canonical, og, schema, sitemap, robots e llms.txt passam a
 apontar para ele, e o endereço .vercel.app ganha um 301 para o domínio novo.
+No ar desde 29/10/2026 em www.dedetizacaoraiox.com.br (o endereço sem www já
+redireciona para o www pela própria Vercel).
 
     python3 build.py
 """
@@ -26,8 +28,8 @@ CSS  = RAIZ / "assets/css/site.css"
 JS   = RAIZ / "assets/js/site.js"
 HTML = RAIZ / "index.html"
 
-DOMINIO = "https://dalux-landing.vercel.app"
-VERCEL  = "dalux-landing.vercel.app"
+DOMINIO = "https://www.dedetizacaoraiox.com.br"
+VERCEL  = "dedetizacaoraiox.vercel.app"
 
 NOME      = "Dedetização Raio X"
 FONE      = "+55 67 99310-6147"
