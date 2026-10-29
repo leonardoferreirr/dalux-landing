@@ -200,8 +200,10 @@ def redirecionar_vercel() -> None:
     outros = [r for r in cfg.get("redirects", [])
               if not any(h.get("value") == VERCEL for h in r.get("has", []))]
     if VERCEL not in DOMINIO:
-        outros.append({"source": "/:path*", "has": [{"type": "host", "value": VERCEL}],
-                       "destination": f"{DOMINIO}/:path*", "permanent": True})
+        # a raiz vai à parte: na Vercel o "/:path*" não pegou a página inicial
+        host = [{"type": "host", "value": VERCEL}]
+        outros += [{"source": "/", "has": host, "destination": f"{DOMINIO}/", "permanent": True},
+                   {"source": "/:path*", "has": host, "destination": f"{DOMINIO}/:path*", "permanent": True}]
     if outros:
         cfg["redirects"] = outros
     else:
