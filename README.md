@@ -30,12 +30,16 @@ Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework:
   entre as patas (pixels claros e sem cor viram transparentes). Originais e recortes em `_src/v2/`.
 - Hero: escorpião e barata se revezam atrás de uma mira só. O slideshow começa no primeiro movimento da pessoa
   (ou aos 12 s): se a barata entrasse sozinha no carregamento, o Lighthouse a contava como LCP aos 7,6 s (desktop 75).
+- `francesinha-*.webp`: barata francesinha (Blattella germanica), Pexels 6482827, recortada (licença livre).
+  A cozinha em corte da seção "Onde a baratinha se esconde" é SVG no HTML, como a casa.
 - A mira, as fitas de "cuidado", a cadeia barata → escorpião → casa e o corte da casa são SVG/CSS no próprio HTML.
 
 ## A confirmar com o cliente
 
 - Cidade e bairros atendidos (título, descrição e dados do Google ainda dizem só "Mato Grosso do Sul").
 - Garantia (tem? quantos dias?) e se emite certificado de dedetização para empresa.
+- **Francesinha:** a ficha diz que a Dalux aplica o produto em gel dentro das frestas. Confirmar que é o método dele
+  (é o padrão para essa barata). Se não for, trocar o parágrafo `.ficha-dalux` no `index.html`.
 - Anos de experiência, CNPJ, licença sanitária e responsável técnico.
 - Fotos reais da equipe e do serviço (hoje o site não tem foto de pessoa).
 - Domínio (canonical, og:image e schema apontam para `dalux-landing.vercel.app`).

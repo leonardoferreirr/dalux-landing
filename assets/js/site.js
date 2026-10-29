@@ -20,13 +20,12 @@
 
   // 2. Animação infinita só roda com a seção na tela
   if (temIO) {
-    var casa = document.getElementById('casa-svg');
     var pausa = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         e.target.classList.toggle('pausa', !e.isIntersecting);
-        if (casa && e.target.contains(casa) && casa.pauseAnimations) {
-          e.isIntersecting ? casa.unpauseAnimations() : casa.pauseAnimations();
-        }
+        e.target.querySelectorAll('svg').forEach(function (svg) {
+          if (svg.pauseAnimations) e.isIntersecting ? svg.unpauseAnimations() : svg.pauseAnimations();
+        });
       });
     }, { rootMargin: '120px 0px' });
     document.querySelectorAll('[data-anim]').forEach(function (el) { pausa.observe(el); });
@@ -81,25 +80,27 @@
     setTimeout(roda, 12000);
   }
 
-  // 6. Mapa da casa: item da lista acende o número no desenho e vice-versa
-  var itens = document.querySelectorAll('.mapa-lista li');
-  var pontos = document.querySelectorAll('.hs');
-  function acende(n) {
-    itens.forEach(function (li) { li.classList.toggle('ativo', li.dataset.n === n); });
-    pontos.forEach(function (g) { g.classList.toggle('ativo', g.dataset.n === n); });
-  }
-  itens.forEach(function (li) {
-    li.addEventListener('mouseenter', function () { acende(li.dataset.n); });
-    li.addEventListener('focus', function () { acende(li.dataset.n); });
-    li.addEventListener('click', function () { acende(li.dataset.n); });
-  });
-  pontos.forEach(function (g) {
-    g.addEventListener('click', function () {
-      acende(g.dataset.n);
-      var li = document.querySelector('.mapa-lista li[data-n="' + g.dataset.n + '"]');
-      if (li && window.innerWidth < 900) li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // 6. Mapas (casa e cozinha): item da lista acende o número no desenho e vice-versa
+  document.querySelectorAll('.mapa').forEach(function (mapa) {
+    var itens = mapa.querySelectorAll('.mapa-lista li');
+    var pontos = mapa.querySelectorAll('.hs');
+    function acende(n) {
+      itens.forEach(function (li) { li.classList.toggle('ativo', li.dataset.n === n); });
+      pontos.forEach(function (g) { g.classList.toggle('ativo', g.dataset.n === n); });
+    }
+    itens.forEach(function (li) {
+      li.addEventListener('mouseenter', function () { acende(li.dataset.n); });
+      li.addEventListener('focus', function () { acende(li.dataset.n); });
+      li.addEventListener('click', function () { acende(li.dataset.n); });
     });
+    pontos.forEach(function (g) {
+      g.addEventListener('click', function () {
+        acende(g.dataset.n);
+        var li = mapa.querySelector('.mapa-lista li[data-n="' + g.dataset.n + '"]');
+        if (li && window.innerWidth < 900) li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+    var lista = mapa.querySelector('.mapa-lista');
+    if (lista) lista.addEventListener('mouseleave', function () { acende(''); });
   });
-  var lista = document.querySelector('.mapa-lista');
-  if (lista) lista.addEventListener('mouseleave', function () { acende(''); });
 })();
