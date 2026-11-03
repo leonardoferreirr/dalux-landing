@@ -104,6 +104,7 @@ def conteudo(html: str) -> dict:
         "escorpiao": lista("esconderijos"),
         "baratinha": lista("baratinha"),
         "veneno": [texto(p) for p in re.findall(r'<ol class="motivos">(.*?)</ol>', html, flags=re.S)[0].split("</li>") if texto(p)],
+        "descricao": texto(re.search(r'<meta name="description" content="([^"]*)"', html).group(1)),
     }
 
 
@@ -131,7 +132,7 @@ def schema(c: dict) -> str:
         {"@type": "WebSite", "@id": f"{S}/#site", "url": f"{S}/", "name": NOME,
          "inLanguage": "pt-BR", "publisher": {"@id": f"{S}/#empresa"}},
         {"@type": "WebPage", "@id": f"{S}/#pagina", "url": f"{S}/",
-         "name": "Dedetização em Campo Grande contra escorpião e barata",
+         "name": "Dedetização em Campo Grande contra escorpião e barata", "description": c["descricao"],
          "isPartOf": {"@id": f"{S}/#site"}, "about": {"@id": f"{S}/#empresa"}, "inLanguage": "pt-BR",
          "primaryImageOfPage": {"@type": "ImageObject", "url": f"{S}/assets/img/og-raiox.jpg"}},
         {"@type": "HowTo", "@id": f"{S}/#como-funciona", "name": "Como funciona a dedetização",
@@ -149,6 +150,13 @@ def schema(c: dict) -> str:
 def llms(c: dict) -> str:
     S = DOMINIO
     lin = [f"# {NOME}", "", f"> {RESUMO} Orçamento pelo WhatsApp {FONE_VER}.", "",
+           "## Em poucas palavras", "",
+           f"- Empresa: {NOME}",
+           "- Cidade: Campo Grande, Mato Grosso do Sul. O bairro é confirmado pelo WhatsApp.",
+           "- Pragas: escorpião (escorpião-amarelo), barata de esgoto e barata francesinha.",
+           "- Para quem: casas, apartamentos, condomínios, comércios e indústrias.",
+           "- Preço: sob orçamento, pelo WhatsApp. O site não publica valores.",
+           f"- Contato: WhatsApp {FONE_VER}.", "",
            "A Raio X trata o escorpião e a barata juntos: a barata é a comida do escorpião, então "
            "não adianta matar um e deixar o outro em casa. A aplicação é feita onde eles se escondem, "
            "e depois do serviço o cliente recebe as orientações de prevenção.", "",

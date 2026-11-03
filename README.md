@@ -29,6 +29,23 @@ Estático puro (HTML, CSS e JS), sem framework. Deploy na Vercel com `framework:
   Google pode indexar os dois endereços).
 - Depois do domínio: cadastrar no Google Search Console e no Bing Webmaster Tools, enviar o `sitemap.xml` e
   pedir a indexação da home. O Perfil da Empresa no Google pesa mais que o site para "dedetização perto de mim".
+- Título e descrição do Google ficam no `<head>` do `index.html` (o h1 não muda). O `llms.txt` abre com um resumo
+  objetivo (cidade, pragas, para quem, preço sob orçamento e contato) para os assistentes de IA citarem certo.
+- **Busca local:** o telefone `(67) 99310-6147` e "Campo Grande · MS" do rodapé são os mesmos do schema (`FONE` e
+  `address`). Mudou um, muda o outro. Sem endereço de rua no site, o schema leva só cidade e estado.
+
+## Como trocar de domínio sem perder SEO
+
+1. Em `build.py`, troque `DOMINIO` pelo endereço novo (com `https://` e sem barra no fim). Se o projeto da Vercel
+   mudar de nome, ajuste também `VERCEL`.
+2. Rode `python3 build.py`. Canonical, og:url, imagens de compartilhamento, schema, `sitemap.xml`, `robots.txt` e
+   `llms.txt` passam a usar o domínio novo, e o `vercel.json` ganha o redirect permanente do `.vercel.app` para ele
+   (308, que o Google trata como 301).
+3. Adicione o domínio no projeto da Vercel (Settings, Domains) e aponte o DNS como ela pedir.
+4. Faça o push. Depois do deploy, confira que o `.vercel.app` (e o domínio antigo, se houver) responde com redirect
+   para o novo. Se o domínio antigo for outro registro, ele precisa continuar ligado na Vercel com redirect 301.
+5. No Search Console, cadastre a propriedade nova, envie o `sitemap.xml` e, se o domínio antigo já estava indexado,
+   use "Mudança de endereço".
 
 ## Imagens (v2, "na mira")
 
